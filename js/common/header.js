@@ -7,16 +7,16 @@
 let mobileMenuOpen = false;
 let subMenusVisible = false;
 
+// 현재 위치에 따라 경로 결정 (파일 전체에서 공유)
+const isInPagesFolder = window.location.pathname.includes('/pages/');
+const basePath = isInPagesFolder ? '../' : '';
+
 // Global navigation function
 window.navigateTo = function(page) {
     // Validate page parameter
     if (!page || page === 'undefined' || page === 'null' || typeof page !== 'string') {
         return false;
     }
-
-    // 현재 위치에 따라 경로 결정
-    const isInPagesFolder = window.location.pathname.includes('/pages/');
-    const basePath = isInPagesFolder ? '../' : '';
 
     // Handle special cases
     if (page === 'home') {
@@ -172,8 +172,6 @@ window.openReservation = function() {
         }
     } else {
         if (!isPreviewMode) {
-            const isInPagesFolder = window.location.pathname.includes('/pages/');
-            const basePath = isInPagesFolder ? '../' : '';
             window.location.href = `${basePath}pages/reservation.html`;
         }
     }
