@@ -10,7 +10,7 @@ class HeaderFooterLoader {
         if (this.headerLoaded) return;
 
         try {
-            const response = await fetch('./common/header.html');
+            const response = await fetch('/pages/common/header.html');
             const html = await response.text();
             
             // Parse the HTML and extract the header element and mobile menu
@@ -106,7 +106,7 @@ class HeaderFooterLoader {
         if (this.footerLoaded) return;
 
         try {
-            const response = await fetch('./common/footer.html');
+            const response = await fetch('/pages/common/footer.html');
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
