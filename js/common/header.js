@@ -16,11 +16,11 @@ window.navigateTo = function(page) {
 
     // Handle special cases
     if (page === 'home') {
-        window.location.href = '../pages/index.html';
+        window.location.href = '/index.html';
         return;
     }
     if (page === 'reservation-info') {
-        window.location.href = '../pages/reservation.html';
+        window.location.href = '/pages/reservation.html';
         return;
     }
 
@@ -29,7 +29,7 @@ window.navigateTo = function(page) {
         window.navigateToPage(page);
     } else {
         // Direct navigation fallback
-        window.location.href = `../pages/${page}.html`;
+        window.location.href = `/pages/${page}.html`;
     }
 
     closeMobileMenu();
@@ -168,7 +168,7 @@ window.openReservation = function() {
         }
     } else {
         if (!isPreviewMode) {
-            window.location.href = '../pages/reservation.html';
+            window.location.href = '/pages/reservation.html';
         }
     }
 };
