@@ -19,13 +19,9 @@ class BaseDataMapper {
      */
     async loadData() {
         try {
-            // 현재 위치에 따라 경로 결정
-            const isInPagesFolder = window.location.pathname.includes('/pages/');
-            const basePath = isInPagesFolder ? '../' : './';
-
             // 캐시 방지를 위한 타임스탬프 추가
             const timestamp = new Date().getTime();
-            const response = await fetch(`${basePath}standard-template-data.json?t=${timestamp}`);
+            const response = await fetch(`./standard-template-data.json?t=${timestamp}`);
             this.data = await response.json();
             this.isDataLoaded = true;
             return this.data;

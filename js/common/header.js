@@ -7,9 +7,8 @@
 let mobileMenuOpen = false;
 let subMenusVisible = false;
 
-// 현재 위치에 따라 경로 결정 (파일 전체에서 공유)
-const isInPagesFolder = window.location.pathname.includes('/pages/');
-const basePath = isInPagesFolder ? '../' : './';
+// 모든 페이지가 루트에 있으므로 경로 통일
+const basePath = './';
 
 // Global navigation function
 window.navigateTo = function(page) {
@@ -24,7 +23,7 @@ window.navigateTo = function(page) {
         return;
     }
     if (page === 'reservation-info') {
-        window.location.href = `${basePath}pages/reservation.html`;
+        window.location.href = `${basePath}reservation.html`;
         return;
     }
 
@@ -33,7 +32,7 @@ window.navigateTo = function(page) {
         window.navigateToPage(page);
     } else {
         // Direct navigation fallback
-        window.location.href = `${basePath}pages/${page}.html`;
+        window.location.href = `${basePath}${page}.html`;
     }
 
     closeMobileMenu();
@@ -172,7 +171,7 @@ window.openReservation = function() {
         }
     } else {
         if (!isPreviewMode) {
-            window.location.href = `${basePath}pages/reservation.html`;
+            window.location.href = `${basePath}reservation.html`;
         }
     }
 };

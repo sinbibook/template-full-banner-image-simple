@@ -3,8 +3,8 @@ class HeaderFooterLoader {
     constructor() {
         this.headerLoaded = false;
         this.footerLoaded = false;
-        // 현재 페이지 위치에 따라 경로 결정
-        this.basePath = window.location.pathname.includes('/pages/') ? './' : './pages/';
+        // 모든 페이지가 루트에 있으므로 경로 통일
+        this.basePath = './';
     }
 
     // Extract content from header.html
@@ -51,18 +51,11 @@ class HeaderFooterLoader {
                     document.head.appendChild(newStyle);
                 });
 
-                // Add CSS links to head with adjusted paths
+                // Add CSS links to head
                 linkElements.forEach(link => {
                     const newLink = document.createElement('link');
                     newLink.rel = 'stylesheet';
-                    // Adjust path: remove ../ prefix if loading from root
-                    const href = link.getAttribute('href');
-                    if (this.basePath === './pages/' && href.startsWith('../')) {
-                        // Root에서 로드: ../ 제거
-                        newLink.href = href.replace('../', '');
-                    } else {
-                        newLink.href = href;
-                    }
+                    newLink.href = link.getAttribute('href');
                     document.head.appendChild(newLink);
                 });
 
@@ -73,14 +66,7 @@ class HeaderFooterLoader {
 
                         // Handle external script files (src attribute)
                         if (script.src) {
-                            // Adjust script path: remove ../ prefix if loading from root
-                            const src = script.getAttribute('src');
-                            if (this.basePath === './pages/' && src.startsWith('../')) {
-                                // Root에서 로드: ../ 제거
-                                newScript.src = src.replace('../', '');
-                            } else {
-                                newScript.src = src;
-                            }
+                            newScript.src = script.getAttribute('src');
                             newScript.onload = resolve;
                             newScript.onerror = reject;
                         } else {
@@ -162,34 +148,21 @@ class HeaderFooterLoader {
                     document.head.appendChild(newStyle);
                 });
 
-                // Add CSS links to head with adjusted paths
+                // Add CSS links to head
                 linkElements.forEach(link => {
                     const newLink = document.createElement('link');
                     newLink.rel = 'stylesheet';
-                    // Adjust path: remove ../ prefix if loading from root
-                    const href = link.getAttribute('href');
-                    if (this.basePath === './pages/' && href.startsWith('../')) {
-                        // Root에서 로드: ../ 제거
-                        newLink.href = href.replace('../', '');
-                    } else {
-                        newLink.href = href;
-                    }
+                    newLink.href = link.getAttribute('href');
                     document.head.appendChild(newLink);
                 });
 
-                // Add scripts to body with adjusted paths
+                // Add scripts to body
                 scriptElements.forEach(script => {
                     const newScript = document.createElement('script');
 
                     // Handle external script files (src attribute)
                     if (script.src || script.getAttribute('src')) {
-                        const src = script.getAttribute('src');
-                        if (this.basePath === './pages/' && src.startsWith('../')) {
-                            // Root에서 로드: ../ 제거
-                            newScript.src = src.replace('../', '');
-                        } else {
-                            newScript.src = src;
-                        }
+                        newScript.src = script.getAttribute('src');
                     } else {
                         // Handle inline scripts
                         newScript.textContent = script.textContent;
