@@ -14,13 +14,17 @@ window.navigateTo = function(page) {
         return false;
     }
 
+    // 현재 위치에 따라 경로 결정
+    const isInPagesFolder = window.location.pathname.includes('/pages/');
+    const basePath = isInPagesFolder ? '../' : '';
+
     // Handle special cases
     if (page === 'home') {
-        window.location.href = '/index.html';
+        window.location.href = `${basePath}index.html`;
         return;
     }
     if (page === 'reservation-info') {
-        window.location.href = '/pages/reservation.html';
+        window.location.href = `${basePath}pages/reservation.html`;
         return;
     }
 
@@ -29,7 +33,7 @@ window.navigateTo = function(page) {
         window.navigateToPage(page);
     } else {
         // Direct navigation fallback
-        window.location.href = `/pages/${page}.html`;
+        window.location.href = `${basePath}pages/${page}.html`;
     }
 
     closeMobileMenu();
@@ -168,7 +172,9 @@ window.openReservation = function() {
         }
     } else {
         if (!isPreviewMode) {
-            window.location.href = '/pages/reservation.html';
+            const isInPagesFolder = window.location.pathname.includes('/pages/');
+            const basePath = isInPagesFolder ? '../' : '';
+            window.location.href = `${basePath}pages/reservation.html`;
         }
     }
 };

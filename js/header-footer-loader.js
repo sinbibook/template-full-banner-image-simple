@@ -3,14 +3,16 @@ class HeaderFooterLoader {
     constructor() {
         this.headerLoaded = false;
         this.footerLoaded = false;
+        // 현재 페이지 위치에 따라 경로 결정
+        this.basePath = window.location.pathname.includes('/pages/') ? '' : 'pages/';
     }
-    
+
     // Extract content from header.html
     async loadHeader() {
         if (this.headerLoaded) return;
 
         try {
-            const response = await fetch('/pages/common/header.html');
+            const response = await fetch(`${this.basePath}common/header.html`);
             const html = await response.text();
             
             // Parse the HTML and extract the header element and mobile menu
@@ -106,7 +108,7 @@ class HeaderFooterLoader {
         if (this.footerLoaded) return;
 
         try {
-            const response = await fetch('/pages/common/footer.html');
+            const response = await fetch(`${this.basePath}common/footer.html`);
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
