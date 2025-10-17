@@ -9,7 +9,7 @@ let subMenusVisible = false;
 
 // 현재 위치에 따라 경로 결정 (파일 전체에서 공유)
 const isInPagesFolder = window.location.pathname.includes('/pages/');
-const basePath = isInPagesFolder ? '../' : '';
+const basePath = isInPagesFolder ? '../' : './';
 
 // Global navigation function
 window.navigateTo = function(page) {

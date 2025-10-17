@@ -4,7 +4,7 @@ class HeaderFooterLoader {
         this.headerLoaded = false;
         this.footerLoaded = false;
         // 현재 페이지 위치에 따라 경로 결정
-        this.basePath = window.location.pathname.includes('/pages/') ? '' : 'pages/';
+        this.basePath = window.location.pathname.includes('/pages/') ? './' : './pages/';
     }
 
     // Extract content from header.html
@@ -57,7 +57,7 @@ class HeaderFooterLoader {
                     newLink.rel = 'stylesheet';
                     // Adjust path: remove ../ prefix if loading from root
                     const href = link.getAttribute('href');
-                    if (this.basePath === 'pages/' && href.startsWith('../')) {
+                    if (this.basePath === './pages/' && href.startsWith('../')) {
                         // Root에서 로드: ../ 제거
                         newLink.href = href.replace('../', '');
                     } else {
@@ -75,7 +75,7 @@ class HeaderFooterLoader {
                         if (script.src) {
                             // Adjust script path: remove ../ prefix if loading from root
                             const src = script.getAttribute('src');
-                            if (this.basePath === 'pages/' && src.startsWith('../')) {
+                            if (this.basePath === './pages/' && src.startsWith('../')) {
                                 // Root에서 로드: ../ 제거
                                 newScript.src = src.replace('../', '');
                             } else {
@@ -168,7 +168,7 @@ class HeaderFooterLoader {
                     newLink.rel = 'stylesheet';
                     // Adjust path: remove ../ prefix if loading from root
                     const href = link.getAttribute('href');
-                    if (this.basePath === 'pages/' && href.startsWith('../')) {
+                    if (this.basePath === './pages/' && href.startsWith('../')) {
                         // Root에서 로드: ../ 제거
                         newLink.href = href.replace('../', '');
                     } else {
@@ -184,7 +184,7 @@ class HeaderFooterLoader {
                     // Handle external script files (src attribute)
                     if (script.src || script.getAttribute('src')) {
                         const src = script.getAttribute('src');
-                        if (this.basePath === 'pages/' && src.startsWith('../')) {
+                        if (this.basePath === './pages/' && src.startsWith('../')) {
                             // Root에서 로드: ../ 제거
                             newScript.src = src.replace('../', '');
                         } else {
